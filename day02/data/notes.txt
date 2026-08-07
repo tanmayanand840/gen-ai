@@ -1,0 +1,281 @@
+Introduction to Artificial Intelligence
+
+Artificial Intelligence (AI) is a branch of computer science that focuses on creating systems capable of performing tasks that typically require human intelligence. These tasks include reasoning, learning, problem-solving, understanding natural language, and recognizing images.
+
+AI can be categorized into two main types:
+
+Narrow AI, which is designed for a specific task.
+General AI, which aims to perform any intellectual task a human can do.
+
+Today, most AI systems are examples of Narrow AI.
+
+Machine Learning
+
+Machine Learning is a subset of Artificial Intelligence.
+
+Instead of writing explicit rules, machine learning algorithms learn patterns from data.
+
+Common types of machine learning include:
+
+Supervised Learning
+Unsupervised Learning
+Reinforcement Learning
+
+Supervised learning uses labeled data.
+
+Unsupervised learning discovers hidden patterns without labels.
+
+Reinforcement learning trains an agent using rewards and penalties.
+
+Popular algorithms include:
+
+Linear Regression
+Decision Trees
+Random Forest
+Support Vector Machine
+Neural Networks
+Deep Learning
+
+Deep Learning is a specialized branch of Machine Learning.
+
+It uses Artificial Neural Networks with multiple hidden layers.
+
+Deep learning performs extremely well on tasks such as:
+
+Image Classification
+Speech Recognition
+Language Translation
+Object Detection
+
+Large Language Models such as GPT are based on Transformer architectures rather than traditional recurrent neural networks.
+
+Large Language Models
+
+A Large Language Model (LLM) is trained on massive amounts of text data.
+
+Examples include:
+
+GPT
+Llama
+Gemini
+Claude
+Mistral
+
+An LLM predicts the next token based on previous tokens.
+
+During inference, the model generates one token at a time until it completes the response.
+
+LLMs can perform many tasks including:
+
+Summarization
+Translation
+Coding
+Question Answering
+Text Generation
+Tokens
+
+Before processing text, an LLM converts text into tokens.
+
+A token may be:
+
+A word
+Part of a word
+A punctuation mark
+A number
+
+Example:
+
+"I love programming."
+
+Possible tokens:
+
+I
+love
+program
+ming
+.
+
+Different models use different tokenizers.
+
+Embeddings
+
+Embeddings convert text into vectors.
+
+A vector is simply a list of numbers representing semantic meaning.
+
+Example:
+
+"I love Python"
+
+↓
+
+[0.12, -0.55, 0.91, ...]
+
+Sentences with similar meanings produce vectors that are close together.
+
+Embeddings power:
+
+Semantic Search
+Recommendation Systems
+AI Memory
+Retrieval-Augmented Generation (RAG)
+Vector Databases
+
+A Vector Database stores embeddings.
+
+Unlike relational databases, vector databases support similarity search.
+
+Popular vector databases include:
+
+ChromaDB
+Pinecone
+FAISS
+Qdrant
+Milvus
+Weaviate
+pgvector
+
+When a user asks a question, the question is converted into an embedding.
+
+The vector database finds the nearest vectors and returns the most relevant documents.
+
+Retrieval-Augmented Generation (RAG)
+
+RAG combines retrieval with generation.
+
+Instead of relying only on the LLM's internal knowledge, RAG retrieves relevant documents before generating an answer.
+
+The pipeline is:
+
+User asks a question.
+Convert the question into an embedding.
+Search the vector database.
+Retrieve relevant chunks.
+Send the chunks to the LLM.
+Generate the final answer.
+
+Benefits of RAG:
+
+More accurate responses
+Uses private documents
+Reduces hallucinations
+No need to retrain the model
+LangChain
+
+LangChain is a framework for building applications with LLMs.
+
+It provides components for:
+
+Prompt Templates
+Output Parsers
+Retrievers
+Document Loaders
+Memory
+Agents
+
+LangChain simplifies the development of RAG applications.
+
+LangGraph
+
+LangGraph extends LangChain by allowing developers to build stateful AI workflows.
+
+Instead of a simple sequence of operations, applications are represented as graphs.
+
+Each node performs a task such as:
+
+Calling an LLM
+Searching a database
+Executing a tool
+Making a decision
+
+LangGraph is commonly used for AI agents.
+
+FastAPI
+
+FastAPI is a modern Python framework for building APIs.
+
+Advantages include:
+
+High performance
+Automatic API documentation
+Type checking
+Easy integration with AI applications
+
+FastAPI is commonly used to deploy LLM services.
+
+Docker
+
+Docker packages an application and all of its dependencies into a container.
+
+Benefits include:
+
+Consistent environments
+Easy deployment
+Simplified dependency management
+
+Docker is widely used when deploying AI applications.
+
+Git and GitHub
+
+Git is a version control system.
+
+GitHub is a platform for hosting Git repositories.
+
+Developers use Git to:
+
+Track changes
+Collaborate
+Create branches
+Merge code
+Review pull requests
+
+Almost every software company uses Git.
+
+Prompt Engineering
+
+Prompt Engineering is the process of designing prompts that guide an LLM toward producing accurate and useful responses.
+
+Common techniques include:
+
+Zero-shot prompting
+Few-shot prompting
+Chain-of-thought prompting (used carefully depending on the model and task)
+Role prompting
+
+A well-designed prompt often improves output quality without changing the underlying model.
+
+AI Agents
+
+An AI Agent is a system that can:
+
+Understand a goal
+Plan actions
+Use external tools
+Remember context
+Execute multiple steps
+Produce a final result
+
+Agents are more capable than a single prompt because they can interact with APIs, databases, search engines, and other software.
+
+Model Context Protocol (MCP)
+
+Model Context Protocol (MCP) is a standard that allows AI models to securely connect with external tools and data sources.
+
+Instead of building a custom integration for every application, MCP provides a consistent way for models to discover and use capabilities such as databases, file systems, GitHub repositories, or business applications.
+
+Conclusion
+
+Modern Generative AI applications combine multiple technologies:
+
+Large Language Models
+Embeddings
+Vector Databases
+Retrieval-Augmented Generation
+FastAPI
+LangChain
+LangGraph
+Docker
+GitHub
+AI Agents
+
+Understanding how these components work together enables developers to build scalable, production-ready AI applications.

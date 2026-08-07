@@ -1,0 +1,13 @@
+# Python virtual environments and generated files
+.venv/
+__pycache__/
+*.py[cod]
+
+# Secrets and local configuration
+.env
+
+# Local vector database
+chroma_db/
+
+# Temporary Git metadata used while the OneDrive .git placeholder is unavailable
+.git-local/
