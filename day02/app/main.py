@@ -1,33 +1,85 @@
+from fastapi import FastAPI
+from pydantic import BaseModel, Field
 from app.services.embedding_service import create_embedding
 from app.services.vector_service import search_documents
 from app.services.llm_service import generate_answer
+from fastapi import HTTPException
+
 from app.exceptions import (
     EmbeddingError,
     VectorDatabaseError,
     LLMError,
 )
 
-question = input("Ask: ")
+
+app = FastAPI(
+    title="RAG API",
+    description="AI-powered document question answering API",
+    version="1.0.0",
+)
 
 
-try:
+# Request body
+class ChatRequest(BaseModel):
 
-    query_embedding = create_embedding(question)
+    question: str = Field(
+        ...,
+        min_length=1,
+        description="Question to ask about the documents"
+    )
 
-    documents = search_documents(query_embedding)
 
-    context = "\n\n".join(documents)
+# Home
+@app.get("/")
+def home():
+    return {
+        "message": "RAG API is running"
+    }
 
-    answer = generate_answer(question, context)
 
-    print("\nAnswer:\n")
-    print(answer)
+# Chat endpoint
+@app.post("/chat")
+def chat(request: ChatRequest):
 
-except EmbeddingError:
-    print("Could not process your question.")
+    question = request.question
 
-except VectorDatabaseError:
-    print("Could not search the documents.")
+    try:
 
-except LLMError:
-    print("Could not generate an answer.")
+        # 1. Create embedding
+        query_embedding = create_embedding(question)
+
+        # 2. Retrieve relevant documents
+        documents = search_documents(query_embedding)
+
+        # 3. Combine retrieved chunks
+        context = "\n\n".join(documents)
+
+        # 4. Generate answer using LLM
+        answer = generate_answer(
+            question,
+            context
+        )
+
+        # 5. Return response
+        return {
+            "question": question,
+            "answer": answer
+        }
+
+    except EmbeddingError:
+        raise HTTPException(
+            status_code=500,
+            detail="Could not create question embedding."
+        )
+
+    except VectorDatabaseError:
+        raise HTTPException(
+            status_code=500,
+            detail="Could not search the document database."
+        )
+
+    except LLMError:
+        raise HTTPException(
+            status_code=503,
+            detail="LLM service is currently unavailable."
+        )
